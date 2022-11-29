@@ -1,0 +1,80 @@
+[
+  {
+    "logic_type": "First Order Logic",
+    "logic_subtype": "Universal Generalization",
+    "logic_type_code": "F1",
+    "Premise": [
+      "All monkeys are Mammals",
+      "All cows are Mammals",
+      "All Mammals are animals"
+    ],
+    "Hypothesis": [
+      "All monkeys and cows are animals"
+    ],
+    "Label": [
+      "True"
+    ]
+  },
+  {
+    "logic_type": "First Order Logic",
+    "logic_subtype": "Universal Generalization",
+    "logic_type_code": "F1",
+    "Premise": [
+      "All barbers cut hairs",
+      "All humans requires their hair to be cut",
+      "All barbers are humans"
+    ],
+    "Hypothesis": [
+      "All barbers requires their hair to be cut"
+    ],
+    "Label": [
+      "True"
+    ]
+  },
+  {
+    "logic_type": "First Order Logic",
+    "logic_subtype": "Universal Generalization",
+    "logic_type_code": "F1",
+    "Premise": [
+      "Everything near a tree is a leaf",
+      "All the fallen leafs are yellow"
+    ],
+    "Hypothesis": [
+      "Therefore, Everything is yellow"
+    ],
+    "Label": [
+      "False"
+    ]
+  },
+  {
+    "logic_type": "First Order Logic",
+    "logic_subtype": "Universal Generalization",
+    "logic_type_code": "F1",
+    "Premise": [
+      "All cats are animals",
+      "My Cat is thin"
+    ],
+    "Hypothesis": [
+      "All animals are thin"
+    ],
+    "Label": [
+      "False"
+    ]
+  },
+  {
+    "logic_type": "First Order Logic",
+    "logic_subtype": "Universal Generalization",
+    "logic_type_code": "F1",
+    "Premise": [
+      "All Cars are red",
+      "All vehicles are Cars"
+    ],
+    "Hypothesis": [
+      "Every vehicles is red"
+    ],
+    "Label": [
+      "True"
+    ]
+  }
+]
+  
