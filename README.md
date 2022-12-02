@@ -11,4 +11,4 @@ Logical Reasoning Dataset and Model Creations
 - [Akash Kant](https://github.com/akashkthkr)
 - [Tejesh Andhavarapu](https://github.com/tejesh5 )
 - [Raviram Mamidi](https://github.com/ravirammamidi)
-- [Micah Secrest)](https://github.com/micahsecrest )
+- [Micah Secrest](https://github.com/micahsecrest )
