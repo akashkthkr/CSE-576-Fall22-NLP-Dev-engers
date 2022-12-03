@@ -1,5 +1,4 @@
 # CSE-576-NLP-Dev-engers
-Logical Reasoning Dataset and Model Creations
 
 ## Introduction
 The purpose of this project is to explore the logical reasoning capabilities of GPT3, the latest natural language processing model developed by OpenAI. GPT3 is a large-scale, deep-learning language model that has been trained on a vast corpus of natural language text. This model has been shown to have impressive performance on a variety of tasks, from text generation to question answering. By examining the performance of GPT3 on tasks involving logical reasoning, this project aims to gain insights into the capabilities of the model and how it can be applied to real-world problems. Logical reasoning is a fundamental cognitive ability, and it is an essential component of problem-solving, decision-making, and other higher-level thinking skills. The ability to reason logically is a key component of human intelligence and is critical for success in many areas. Thus, the ability to accurately assess GPT3’s logical reasoning capabilities is of great importance.
