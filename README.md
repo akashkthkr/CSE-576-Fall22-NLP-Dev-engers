@@ -27,7 +27,7 @@ Variance Prompting: Adding “Do not repeat the topics” or “Do not repeat th
 Temperature adjustment: Raising the temperature parameter makes the outputs more random, potentially getting GPT3 out of a rut
 Presence Penalty: Adding a presence penalty discourages GPT3 from generating words that already exist, increasing the variety
 
-## Experimentation - Models Used
+## Models Used
 
 ### GPT-3 (Davinci 2 and 3)
 
@@ -41,6 +41,57 @@ Bert-base-uncased is a Google-developed pre-trained model that uses a deep bidir
 
 The BERT Large Uncased model is an upgrade of the Bert base uncased model. It is a sophisticated, bidirectional transformer that has been trained on an even larger corpus of uncased text. It is aimed to capture more complicated word-sentence interactions in natural language processing tasks. It is trained on a variety of tasks and datasets, resulting in a model that is more powerful and robust than its predecessor.
 
+## Experimentation
+
+### GPT-3
+Because GPT-3 is a generative model, a prompt must be used to coerce it into performing classification. For the purpose of our experiment, we used the following prompt:
+
+Given a set of premises and a hypothesis, label the hypothesis as True, False, or Undefined.
+- Premises: {PREMISES}
+- Hypothesis: {HYPOTHESIS}
+- Label:
+
+Above, “{PREMISES}” and “{HYPOTHESIS}” is replaced by a given data point’s list of premises and its hypothesis respectively. The space after “Label:” is left blank because this is where GPT-3 is expected to fill in its prediction. 
+
+For this experiment, we used the entirety of our dataset in order to ensure that the evaluation covered a wide variety of examples. This is opposed to the BERT experiments where much of the data needs to be split into training and testing datasets.
+
+In order to automate this testing process, we wrote a python script that iterates through the dataset and uses the OPENAI python library to call GPT-3 using the prompt specified above for each data point. After receiving a response for a given data point, any whitespace is stripped from the output and it is compared to the ground truth label. We anticipated that GPT-3 may generate unexpected labels and that we would need to have an “other” category for these, but GPT-3 stuck to the prompt and only used True, False, and Undetermined.
+
+We also included a couple of parameters in our call to GPT-3. The first of these was a temperature of 0, specifying no randomness. This is good because we don’t need any creativity or variety for this task, we just need to receive the best fit. It also should help to make the results reproducible. The other parameter we included was max_tokens of 7. While “True”, “False”, and “Undetermined” are single tokens, it is helpful to ensure that GPT-3 can add some whitespace tokens without ruining the results. 
+
+### BERT
+For our BERT experiments, we split our data into testing and training datasets. We used the training dataset to finetune a pre-trained BERT for Sequence Classification models from Huggingface. After training each model, we evaluated each model against the training dataset. 
+
+To establish a baseline for our experiment we trained BERT Base Uncased once with 4 epochs and once with 8 epochs.
+
+Adjusted Attention Heads
+We also trained and tested BERT Base Uncased and BERT Large Uncased with adjusted numbers of attention heads. We trained and tested BERT Base Uncased once with 24 attention heads and once with 48 attention heads (as compared to the usual 12). We trained and tested BERT Large Uncased once with 24 attention heads.
+
+We then compared the results of our baseline and adjusted models to evaluate their performance.
+
+## Results and Analysis
+
+## GPT3
+From our results, we can see GPT3 is relatively good at classifying True hypotheses. A precision of 88.661% means that a value classified as True has an 88.661% of actually being True, which could prove useful in many scenarios. Its F1 score, however, is a bit lower at 79.64%
+
+When it comes to False hypotheses, GPT3 is not nearly as reliable. A precision of 56.127% means that a value classified as True has only a 56.127% of actually being False, which is not very useful. While its recall is a bit higher at 77.278% its F1 score is still quite low at 65.03%.
+
+Our results show that GPT3 is very bad with Undetermined hypotheses. For the Undetermined hypotheses, precision, recall, and F1 score are all less than 20%. 
+
+Overall, GPT3 is situationally useful for this task but is not very reliable. If you only care about labeling True samples as True and a 12% error rate is acceptable GPT3 could be used for this task. Performance with False and Undetermined hypotheses, however, is not reliable enough to be useful
+
+The difficulty in predicting Undetermined may be because the word “Undetermined” is much less common than “True” or “False” in GPT-3’s training dataset. It is likely that there is some number of True or False questions in GPT-3’s training dataset. These are very unlikely to contain Undetermined as an answer. Between True or False questions and Undetermined generally being less used, GPT3 may have a less complete “understanding” of its meaning
+
+### BERT
+
+BERT
+The BERT base model has shown good results, with an overall accuracy of 76%, with good precision for the True and False hypotheses (77.04% and 71.81%, respectively). However, the precision for Undetermined hypotheses was 100%, but the recall was only 3.17%, indicating that the model was only able to return a few correct results. The F1 scores for True and False hypotheses were 84.86% and 62.29%, respectively, while the F1 score for Undetermined was 6.15%. 
+
+By increasing the number of epochs to 8, the BERT model was able to improve its performance. However, increasing the number of attention heads to 24 or 48 reduced the overall accuracy. 
+
+The BERT large model was able to achieve an overall accuracy of 80.16%, which is an improvement over the base model. It had good precision rates for True (84.32%), False (68.38%), and Undetermined (71.64%) hypotheses. The F1 scores for True, False, and Undetermined hypotheses were 87.58%, 61.38%, and 67.60%, respectively.
+
+## Conclusion
 
 
 
