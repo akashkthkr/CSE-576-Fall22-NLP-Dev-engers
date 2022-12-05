@@ -92,6 +92,31 @@ The BERT large model was able to achieve an overall accuracy of 80.16%, which is
 
 ## Conclusion
 
+### BERT
+The BERT base model has shown good results, with an overall accuracy of 76\%, with good precision for the True and False hypotheses (77.04\% and 71.81\%, respectively). However, the precision for Undetermined hypotheses was 100\%, but the recall was only 3.17\%, indicating that the model was only able to return a few correct results. The F1 scores for True and False hypotheses were 84.86\% and 62.29\%, respectively, while the F1 score for Undetermined was 6.15%. 
+
+By increasing the number of epochs to 8, the BERT model was able to improve its performance. However, increasing the number of attention heads to 24 or 48 reduced the overall accuracy. 
+The BERT large model was able to achieve an overall accuracy of 80.16\%, which is an improvement over the base model. It had good precision rates for True (84.32\%), False (68.38\%), and Undetermined (71.64\%) hypotheses. The F1 scores for True, False, and Undetermined hypotheses were 87.58\%, 61.38\%, and 67.60\%, respectively.
+
+### GPT3
+The results from the GPT-3 experiment can be seen in Figure 1. 
+
+From our results, we can see GPT3 is relatively good at classifying True hypotheses. A precision of 88.661\% means that a value classified as True has an 88.661\% of actually being True, which could prove useful in many scenarios. Its F1 score, however, is a bit lower at 79.64\%
+
+When it comes to False hypotheses, GPT3 is not nearly as reliable. A precision of 56.127\% means that a value classified as True has only a 56.127\% of actually being False, which is not very useful. While its recall is a bit higher at 77.278\% its F1 score is still quite low at 65.03\%.
+
+Our results show that GPT3 is very bad with Undetermined hypotheses. For the Undetermined hypotheses, precision, recall, and F1 score are all less than 20\%. 
+
+Overall, GPT3 is situationally useful for this task but is not very reliable. If you only care about labeling True samples as True and a 12\% error rate is acceptable GPT3 could be used for this task. Performance with False and Undetermined hypotheses, however, is not reliable enough to be useful
+
+The difficulty in predicting Undetermined may be because the word "Undetermined" is much less common than "True" or "False" in GPT-3’s training dataset. It is likely that there is some number of True or False questions in GPT-3’s training dataset. These are very unlikely to contain Undetermined as an answer. Between True or False questions and Undetermined generally being less used, GPT3 may have a less complete "understanding" of its meaning
+
+### Overall Conclusion
+
+The results for each BERT model can be seen in the graphs below. 
+
+Overall, this project has served as a comparison between a handful of approaches to logical reasoning in natural language processing. BERT models tend to outperform GPT-3, but their downside is that they require training. GPT-3 on the other hand performs surprisingly well out of the box on these logical reasoning examples, at least on True classifications. For this task, increasing the attention heads didn’t seem to have a major impact, and 12 attention heads seems to be enough. In total, the BERT Large model was the best performer due to its increased size. Comparisons between methods like this are important for deciding which type of model is ideal for a given task.
+
 
 
 ## Links to Refer 
